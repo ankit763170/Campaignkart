@@ -1,37 +1,35 @@
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 
+const Header = () => {
+  const [user, setUser] = useState(false); 
 
-const Navbar = () => {
   return (
-<>
-<div className="navbar bg-base-100">
-  <div className="flex-1">
-    <a className="btn btn-ghost text-xl">daisyUI</a>
-  </div>
-  <div className="flex-none gap-2">
-    <div className="form-control">
-      <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-    </div>
-    <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-        </div>
+    <div>
+      <div className="flex border-b py-4 px-10 lg:px-20 justify-between items-center contact-details">
+        <Link shallow href="/">
+          <div className="">
+            <img
+              className="w-[120px] lg:w-[65%] xl:w-full"
+              src="/assets/images/logo.png"
+            />
+          </div>
+        </Link>
+        {user ? (
+          <Link shallow href={"/logout"}>
+            <div>
+              <button className="px-3 py-2 lg:px-4 text-white lg:py-2 buttonShadow bg-brand_secondary text-[10px] lg:text-sm">
+                Log out
+              </button>
+            </div>
+          </Link>
+        ) : (
+          <> </>
+        )}
       </div>
-      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
-      </ul>
     </div>
-  </div>
-</div>
-</>
-    )
-}
+  );
+};
 
-export default Navbar
+export default Header;

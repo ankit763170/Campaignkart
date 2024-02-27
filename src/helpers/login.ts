@@ -1,27 +1,14 @@
-import mongoose from "mongoose";
-const userSchema = new mongoose.Schema({
-    username : {
-        type: String,
-        required : true,
-        unique :  true,
-    },
-    email :{
-        type   :String ,
-        required :[true,"Please provide an Email address"],
-        unique  : [true,'Email already in use']
-    },
-    password:{
-        type :  String,
-        required : [true, 'Password is required'],
-    },
-    isVerified:{
-        type: Boolean,
-        default :false,
-    },
-    forgotPasswordToken : String,
-    forgotPasswordTokenExpiry  : Date,
-    verifyToken :  String,
-    verifyTokenExpiry  :Date,
-})
-const User = mongoose.models.users || mongoose.model("users", userSchema);
-module.exports=User;
+import axios from "axios";
+
+export const onLogin = async (user: any, setLoading: React.Dispatch<React.SetStateAction<boolean>>, router: any) => {
+    try {
+        setLoading(true);
+        const response = await axios.post("/api/login", user);
+        console.log("Login success", response.data);
+        router.push("/profile");
+    } catch (error:any) {
+        console.log("Login failed", error.message);
+    } finally{
+    setLoading(false);
+    }
+}

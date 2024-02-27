@@ -3,6 +3,8 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import axios from "axios";
 import { signup } from "@/helpers/signup";
+import { useRouter } from 'next/navigation';
+
 
 export default function SignupPage() {
   const [user, setUser] = React.useState({
@@ -12,8 +14,10 @@ export default function SignupPage() {
   });
   const [buttonDisabled, setButtonDisabled] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const router = useRouter();
 
 const onSignup=()=>{
+
     signup(user, setLoading, router);
 }
 

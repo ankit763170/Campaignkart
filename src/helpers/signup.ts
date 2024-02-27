@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useRouter } from "next/navigation";
+
 
 export const signup = async (user: any, setLoading: React.Dispatch<React.SetStateAction<boolean>>, router: any) => {
   try {
@@ -13,3 +13,4 @@ export const signup = async (user: any, setLoading: React.Dispatch<React.SetStat
     setLoading(false);
   }
 };
+

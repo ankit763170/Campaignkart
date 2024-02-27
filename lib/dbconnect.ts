@@ -8,12 +8,12 @@ if (!MONGODB_URI) {
   );
 }
 
-let cached: { conn: mongoose.Mongoose | null; promise: Promise<mongoose.Mongoose> | null } = {
+let cached: { conn: mongoose.Connection | null; promise: Promise<mongoose.Connection> | null } = {
   conn: null,
   promise: null,
 };
 
-async function dbConnect(): Promise<mongoose.Mongoose> {
+async function dbConnect(): Promise<mongoose.Connection> {
   if (cached.conn) {
     return cached.conn;
   }
@@ -25,8 +25,8 @@ async function dbConnect(): Promise<mongoose.Mongoose> {
       useUnifiedTopology: true,
     };
     console.log("Connecting to MongoDB...");
-    cached.promise = mongoose.connect(MONGODB_URI||"", opts).then((mongoose) => {
-      return mongoose;
+    cached.promise = mongoose.connect(MONGODB_URI || "", opts).then((mongoose) => {
+      return mongoose.connection;
     }).catch((err) => {
       throw new Error(`Failed to connect to MongoDB: ${err}`);
     });
@@ -42,4 +42,4 @@ async function dbConnect(): Promise<mongoose.Mongoose> {
   return cached.conn;
 }
 
-export default dbConnect;
+export { dbConnect };

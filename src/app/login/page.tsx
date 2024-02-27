@@ -1,19 +1,29 @@
 "use client"
 import { useState } from 'react';
+import { onLogin } from '@/helpers/login';
+import { useRouter } from 'next/navigation'; 
+import React from 'react';
 
 const Page = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const loggedIn = false; // You need to set the loggedIn state as per your logic
+  const [user, setUser] = useState({ 
+    email: "",
+    password: "",
+    username: "",
+  });
+  const [loading, setLoading] = useState(false); 
+  const router = useRouter();
 
   const handleLogin = () => {
-    // Implement your login logic here
-    setLoading(true);
-    // Example: Simulating login for 2 seconds
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    setLoading(true); 
+    onLogin(user, setLoading, router);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
   };
 
   return (
@@ -27,8 +37,9 @@ const Page = () => {
             <input
               type="email"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              value={user.email} // Changed email to user.email
+              onChange={handleChange} // Changed setEmail to handleChange
               className="p-2 border rounded w-full"
               required
             />
@@ -41,8 +52,9 @@ const Page = () => {
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              value={user.password} // Changed password to user.password
+              onChange={handleChange} // Changed setPassword to handleChange
               className="p-2 border rounded w-full"
               required
             />
