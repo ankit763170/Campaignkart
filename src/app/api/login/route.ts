@@ -1,5 +1,5 @@
 import { dbConnect } from '@/../lib/dbconnect';
-import User from '@/models/userModel';
+import { User } from '@/models/index';
 import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     try {
         const reqbody = await request.json();
         const { email, password } = reqbody;
-        
+
         // Check if email and password are provided
         if (!email || !password) {
             return NextResponse.json('Bad Request', { status: 400 });
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
         // Find user by email
         const user = await User.findOne({ email: email });
-        
+
         // If user doesn't exist, return error
         if (!user) {
             return NextResponse.json({ error: 'User does not exist' }, { status: 404 });
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
         // Check if password is correct
         const validPassword = await bcryptjs.compare(password, user.password);
-        
+
         // If password is invalid, return error
         if (!validPassword) {
             return NextResponse.json({ error: "Invalid password" }, { status: 401 });
@@ -40,14 +40,14 @@ export async function POST(request: NextRequest) {
         // Create token data
         const tokendata = {
             id: user._id,
-            username: user.username, 
+            username: user.username,
             email: user.email,
         };
 
         // Create toke
-        const token = jwt.sign(tokendata, process.env.JWT_SECRETS, { expiresIn: "1d" }); 
+        const token = jwt.sign(tokendata, process.env.JWT_SECRETS, { expiresIn: "1d" });
 
-        
+
         const response = NextResponse.json({
             message: "Login successful",
             success: true,

@@ -1,21 +1,24 @@
-"use client"
+"use client"; // Not sure if this is necessary, it seems to be some custom directive
+
 import { useState } from 'react';
 import { onLogin } from '@/helpers/login';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation'; // Changed import path
 import React from 'react';
-
+import { useDispatch } from 'react-redux'
 const Page = () => {
-  const [user, setUser] = useState({ 
+  const [user, setUser] = useState({
     email: "",
     password: "",
     username: "",
   });
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch()
 
-  const handleLogin = () => {
-    setLoading(true); 
-    onLogin(user, setLoading, router);
+  const handleLogin = async () => {
+
+    setLoading(true);
+    await onLogin(user, setLoading, router, dispatch); // Added await since onLogin is asynchronous
   };
 
   const handleChange = (e) => {
@@ -38,8 +41,8 @@ const Page = () => {
               type="email"
               id="email"
               name="email"
-              value={user.email} // Changed email to user.email
-              onChange={handleChange} // Changed setEmail to handleChange
+              value={user.email}
+              onChange={handleChange}
               className="p-2 border rounded w-full"
               required
             />
@@ -53,8 +56,8 @@ const Page = () => {
               type="password"
               id="password"
               name="password"
-              value={user.password} // Changed password to user.password
-              onChange={handleChange} // Changed setPassword to handleChange
+              value={user.password}
+              onChange={handleChange}
               className="p-2 border rounded w-full"
               required
             />
