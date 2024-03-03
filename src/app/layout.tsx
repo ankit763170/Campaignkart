@@ -18,22 +18,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-            
+
 
       <body className={"3xl:px-[20%] 2xl:px-0"}>
-     
-      <Provider>
 
-        <Navbar/>
+        <Provider>
 
-        {children}
+          <Navbar />
+
+          {children}
         </Provider>
 
-        </body>
-        
+      </body>
 
-      
-    
+
+
+
     </html>
   );
 }

@@ -9,12 +9,12 @@ import { FaUserCircle } from "react-icons/fa";
 import { AiFillDelete } from "react-icons/ai";
 import DeleteUser from "@/apiHelper/deleteUser";
 
+
 const User = () => {
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<IUser[] | null>(null);
   const currentUser = useSelector((state: any) => state.general.user);
-
+  const dispatch = useDispatch()
   const fetchAllUser = async () => {
     try {
       const apiResult = await fetchUsers({});
@@ -89,7 +89,7 @@ const User = () => {
       </div>
       {loading ? (
         <div className="flex justify-center items-center min-h-screen w-full">
-          <div className = "text-white "><CircularProgress  color="inherit" size={20} /></div>
+          <div className="text-white "><CircularProgress color="inherit" size={20} /></div>
         </div>
       ) : !user || user.length < 1 ? (
         <p>No User Found</p>

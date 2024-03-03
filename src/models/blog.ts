@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const { Schema, Types } = mongoose;
+const { Schema } = mongoose;
 
 export const BlogSchema = new Schema(
   {
@@ -7,37 +7,25 @@ export const BlogSchema = new Schema(
       type: String,
       required: true,
     },
-    short_description: {
+    description: {
       type: String,
-      required: true,
-    },
-    long_description: {
-      type: String,
-      required: true,
     },
     cover_image: {
       type: String,
       required: true,
     },
     category: {
-      type: Types.ObjectId,
-      ref: "Categories",
-      required: true,
+      type: String,
     },
     slug: {
       type: String,
-      required: true,
-      unique: true
+      unique: true,
     },
     created_by: {
-      type: Types.ObjectId,
-      ref: "Users",
-      required: true,
+      type: String,
     },
     updated_by: {
-      type: Types.ObjectId,
-      ref: "Users",
-      required: true,
+      type: String,
     }
   },
   {
@@ -49,4 +37,4 @@ export const BlogSchema = new Schema(
 );
 
 // Text Index for multiple fields
-BlogSchema.index({ title: 'text', long_description: 'text' });
+BlogSchema.index({ title: 'text', description: 'text' });
