@@ -51,6 +51,7 @@ export const config = {
   matcher: [
     '/',
     '/login',
-    '/signup'
+    '/signup',
+    '/all-blogs'
   ],
 };

@@ -53,8 +53,10 @@ export interface IUpdateBlogs {
   title: string;
   shortDescription: string;
   longDescription: string;
-  coverImage: string;
+  coverImage  : string;
+
   slug: string;
+  token ?: string;
 
 }
 

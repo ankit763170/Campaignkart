@@ -5,11 +5,8 @@ import { useSelector } from "react-redux";
 import Image from "next/image";
 
 const Header = () => {
-
   const user = useSelector((state) => state.general.user);
-
-
-
+  console.log("User: ", user);
   return (
     <div>
       <div className="flex border-b py-4 px-10 lg:px-20 justify-between items-center contact-details">

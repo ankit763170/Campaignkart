@@ -7,25 +7,25 @@ export async function POST(req: NextRequest) {
  
 
   try {
-    const verificationResult = await verifyToken(req);
-    if (verificationResult && !verificationResult.role) {
-     return verificationResult;
-    }
-    const id = verificationResult.data._id;
+  //    const verificationResult = await verifyToken(req);
+  //    if (verificationResult && !verificationResult.role) {
+  //     return verificationResult;
+  //  }
+  //   const id = verificationResult.data._id;
     const body = await req.json();
-
+// console.log(id)
     
     if (
         !body.title ||
-        !body.short_description ||
-        !body.long_description ||
-        !body.cover_image
+        !body.shortDescription ||
+        !body.longDescription ||
+        !body.coverImage
       ) {
         throw Error("Please enter the missing fields");
       }
   
     await dbConnect();
-    body.updated_by = id
+    // body.updated_by = id
     await Blog.findByIdAndUpdate(body._id,body);
     return NextResponse.json({
       success: true,

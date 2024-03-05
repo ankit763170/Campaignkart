@@ -17,7 +17,7 @@ export const onLogin = async (
         console.log("Login success", response.data.message);
         router.push("/");
         dispatch(login());
-        dispatch(setUser(response.data));
+        dispatch(setUser(response.data.token));
     } catch (error) {
         console.log("Login failed", error);
     } finally {

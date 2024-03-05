@@ -4,8 +4,9 @@ import React from "react";
 import moment from "moment";
 import { AiFillDelete } from "react-icons/ai";
 import DeleteBlog from "../../src/helpers/deleteBlog";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Props {
   item: IBlogs;
@@ -14,6 +15,7 @@ interface Props {
 
 const BlogCard: React.FC<Props> = ({ item, refresh }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state: any) => state.general.user);
 
   function truncateText(text: string, maxLength: number) {
     if (text.length <= maxLength) {
@@ -21,15 +23,19 @@ const BlogCard: React.FC<Props> = ({ item, refresh }) => {
     }
     return text.slice(0, maxLength) + '...';
   }
+  const router = useRouter()
 
   const handleDelete = async (_id: string) => {
     const response = await DeleteBlog({
       _id,
+      token: user,
     });
     if (response.success === true) {
-      refresh();
+      alert("blog deleted..");
+      refresh()
     } else {
       console.error("Failed to delete blog");
+      alert("blog deleted..");
     }
   };
 
@@ -42,37 +48,36 @@ const BlogCard: React.FC<Props> = ({ item, refresh }) => {
               <img
                 className="w-full rounded-t-lg h-full object-cover"
                 src={item.cover_image}
-                alt=""
               />
             </div>
           </div>
-        <div className="h-[40%] g px-2 bg-white">
-          
-            <div className="pt-2">
-              <p className="text-[14px] xl:text-md">
-                {item.title}
-              </p>
+          <div className="h-[40%] g px-2 bg-white ">
+            <div className="text-[10px] xl:text-[10px] pt-2 text-brand_text flex">
+              <div className="border-r-2  pr-3 border-r-brand_text"></div>
+            </div>
+            <div className="pt-2 ">
+              <p className="text-[14px] xl:text-md">{truncateText(item.title, 40)}</p>
               <p className="text-[10px] xl:text-sm pt-2 text-brand_text">
-                {item.shortDescription}
-              </p>   
-              <p className="text-[10px] xl:text-sm pt-2 text-brand_text">
-                {item.longDescription}
+                {item.short_description}
               </p>
             </div>
-
             <div className="flex justify-between">
-              <Link href={`/all-blogs/${item.slug}`}>
+              <Link shallow href={`/all-blogs/${item.slug}`}>
+                <div className="text-[10px] xl:text-sm text-brand_headings pt-3">
                   Read more
-                
+                </div>
               </Link>
-              <div
-                onClick={() => item._id && handleDelete(item._id)}
-                className="text-xl cursor-pointer text-brand_secondary"
-              >
-                <AiFillDelete />
-              </div>
+            </div>
+            <div className="flex justify-center items-center pt-2">
+            <div
+              onClick={() => item._id && handleDelete(item._id)}
+              className="text-xl cursor-pointer text-brand_secondary align"
+            >
+              <AiFillDelete />
             </div>
           </div>
+          </div>
+         
         </div>
       </div>
     </div>
