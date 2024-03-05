@@ -1,30 +1,25 @@
+import axios from "axios";
 
-import { IServices } from "@/types";
-import axios from "axios"
+const DeleteBlog = async ({ _id }: { _id: string }) => {
+  try {
+    const response = await axios.delete("/api/blog/delete", {
+      data: { _id }
+    });
 
+    // No need to check response.status, Axios will throw an error for non-2xx status codes
 
+    // Return the response data if successful
+    return {
+      success: true,
+      data: response.data
+    };
+  } catch (error: any) {
+    // Catch the error and return an object with success: false and the error message
+    return {
+      success: false,
+      message: error.message
+    };
+  }
+};
 
-
-const DeleteBlog = async({_id, token}:{_id:string, token : string})=> {
- try {
-  let config = {
-    headers: { Authorization: `Bearer ${token}` },
-  };
-   const response = await axios.post("/api/blog/delete",{_id},config)
-   if(response.status == 200){
-   return {
-    success:true,
-    data:response.data
-   }
-   }else{
-    return {success:false, message:"data deletion failed"}
-   }
- } catch (error:any) {
-    return {success:false, message:error.message}
- }
-}
-
-export default DeleteBlog
-
-
- 
+export default DeleteBlog;

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Blog } from "@/models";
-import dbConnect from "@/lib/dbconnect";
-import { verifyToken } from "@/middlewares/verifyToken";
+import {dbConnect} from "@/../lib/dbconnect";
+import { verifyToken } from "@/middleware";
 
 export async function POST(req: NextRequest) {
  

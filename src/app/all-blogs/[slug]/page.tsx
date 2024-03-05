@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import fetchBlog from "./../../../helpers/fetchBlog";
-import { IBlogs } from "./../../../type/index";
-import BlogDetails from "./../../../../components/BlogDetails";
+import { IBlogs } from "@/type/index";
+import BlogDetails from "@/../components/BlogDetails";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const BlogRoute = ({
@@ -12,20 +12,21 @@ const BlogRoute = ({
     searchParams: { [key: string]: string | string[] | undefined };
 }) => {
     const [data, setData] = useState<IBlogs | null>(null);
-    const [loading, setLoading] = useState(false); //Blog Loading spinner control
-    const [commentAdded, setCommentAdded] = useState(true);
+  const [loading, setLoading] = useState(false); //Blog Loading spinner control
+  const [commentAdded, setCommentAdded] = useState(true);
 
-    const getData = async () => {
-        setLoading(true);
-        const response = await fetchBlog({ slug: params.slug });
-        setData(response.data?.allBlogs[0]);
-        setCommentAdded(false);
-        setLoading(false);
-    };
+  const getData = async () => {
+    setLoading(true);
+    const response = await fetchBlog({ slug: params.slug });
+    setData(response.data?.allBlogs[0]);
+    setCommentAdded(false);
+    setLoading(false);
+  };
 
-    useEffect(() => {
-        if (commentAdded) getData();
-    }, [commentAdded]);
+  useEffect(() => {
+    if (commentAdded) getData();
+  }, [commentAdded]);
+
 
 
     if (!data && loading)
@@ -40,7 +41,7 @@ const BlogRoute = ({
     if (data)
         return (
             <div>
-                <BlogDetails data={data} setCommentAdded={setCommentAdded} refresh={getData} />
+        <BlogDetails data={data} setCommentAdded={setCommentAdded} refresh={getData}/>
             </div>
         );
 };

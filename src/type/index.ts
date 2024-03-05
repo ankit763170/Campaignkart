@@ -1,5 +1,5 @@
 export interface IUser {
-  addedBy: string; // Example type assuming addedBy is a user ID, change it according to your needs
+  addedBy: string;
   _id?: string;
   name: string;
   email: string;
@@ -37,17 +37,15 @@ export interface IServices {
 }
 
 export interface IBlogs {
+  [x: string]: any;
+  cover_image: string ;
   _id?: string;
   title: string;
   shortDescription: string;
   longDescription: string;
   coverImage: string;
-  category: { name: string };
   slug: string;
-  token?: string;
-  createdAt: string; // Assuming it's a date string
-  createdBy: { name: string };
-  comments?: IComments[];
+
 }
 
 export interface IUpdateBlogs {
@@ -57,14 +55,18 @@ export interface IUpdateBlogs {
   longDescription: string;
   coverImage: string;
   slug: string;
-  token?: string;
+
 }
 
 export interface IComments {
   _id?: string;
   name: string;
   message: string;
-  createdAt: string; // Assuming it's a date string
-  blog: { _id?: string; title: string; slug: string };
+  createdAt: string;
+  blog: {
+    _id?: string;
+    title: string;
+    slug: string;
+  };
   replies?: IComments[];
 }

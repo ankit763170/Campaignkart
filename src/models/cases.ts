@@ -44,8 +44,5 @@ export const CasesSchema = new Schema({
     ref: "Users",
   }
 }, {
-  timestamps: {
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  },
+  timestamps:true,
 });

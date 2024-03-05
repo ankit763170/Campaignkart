@@ -6,7 +6,6 @@ interface ISLug{
   search?:string,
   page?: number,
   limit?: number,
-  category? :string
 }
 
 const fetchBlogs = async(props:ISLug)=> {
@@ -17,7 +16,6 @@ const fetchBlogs = async(props:ISLug)=> {
     search:props.search,
     _start: ((props.limit||6)*(props.page||1)-(props.limit||6)),
     _limit: props.limit,
-    category :props.category
    }})
 
    if(response.status == 200){

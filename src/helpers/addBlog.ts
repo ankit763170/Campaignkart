@@ -6,16 +6,13 @@ interface Iform {
     short_description: string,
     long_description: string,
     cover_image: string,
-    category: string | null,
-    slug: string |  'slug' ,
-    token: string | null
+    slug:string,
+
 }
 
 const AddBlog = async (data: Iform) => {
     try {
-        let config = {
-            headers: { Authorization: `Bearer ${data.token}` },
-        };
+     
         const response = await axios.post("/api/blog/add", data)
 
         if (response.status == 200) {

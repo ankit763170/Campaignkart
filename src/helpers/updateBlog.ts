@@ -1,13 +1,13 @@
 
 import axios from "axios"
-import { IBlogs, ICases, IUpdateBlogs } from "@/types"
+import { IBlogs, ICases, IUpdateBlogs } from "@/type/index"
 
 
 
 const UpdateBlog = async(data:IUpdateBlogs)=> {
  try {
   let config = {
-    headers: { Authorization: `Bearer ${data.token}` },
+    // headers: { Authorization: `Bearer ${data.token}` },
   };
    const response = await axios.post("/api/blog/update",data,config)
 

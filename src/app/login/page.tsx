@@ -1,10 +1,11 @@
-"use client"; // Not sure if this is necessary, it seems to be some custom directive
+"use client";
 
 import { useState } from 'react';
 import { onLogin } from '@/helpers/login';
 import { useRouter } from 'next/navigation'; // Changed import path
 import React from 'react';
 import { useDispatch } from 'react-redux'
+
 const Page = () => {
   const [user, setUser] = useState({
     email: "",
@@ -21,7 +22,7 @@ const Page = () => {
     await onLogin(user, setLoading, router, dispatch); // Added await since onLogin is asynchronous
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     const { name, value } = e.target;
     setUser((prevUser) => ({
       ...prevUser,

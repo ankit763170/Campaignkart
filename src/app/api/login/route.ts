@@ -35,7 +35,6 @@ export async function POST(request: NextRequest) {
         }
 
         console.log("Password is valid");
-        console.log(user);
 
         // Create token data
         const tokendata = {
@@ -45,17 +44,19 @@ export async function POST(request: NextRequest) {
         };
 
         // Create toke
-        const token = jwt.sign(tokendata, process.env.JWT_SECRETS, { expiresIn: "1d" });
+        const token = jwt.sign(tokendata, 'veysecret', { expiresIn: "1d" });
 
 
         const response = NextResponse.json({
             message: "Login successful",
             success: true,
-            token: token
+         token : token,
         });
         response.cookies.set("token", token, {
             httpOnly: true,
         });
+        console.log(response)
+
         return response;
     }
     catch (error: any) {

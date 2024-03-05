@@ -1,8 +1,9 @@
+"use client"
 import React, { useEffect, useState } from "react";
-import BlogCard from "../../../components/BlogCard/index";
+import BlogCard from "@/../components/BlogCard/index";
 import { BiSearch } from "react-icons/bi";
-import fetchBlogs from "../../helpers/fetchBlog";
-import { IBlogs } from "../../type/index";
+import fetchBlogs from "@/helpers/fetchBlog";
+import { IBlogs } from "@/type/index";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
 import Link from "next/link";

@@ -1,7 +1,8 @@
+
 import { NextRequest, NextResponse } from "next/server";
 import { Blog, Category, Comments } from "@/models";
-import dbConnect from "@/lib/dbconnect";
-import convertParams, { FinalQuery } from "@/utils/api/convertParams";
+import {dbConnect} from "@/../lib/dbconnect";
+import convertParams, { FinalQuery } from "@/../utils/api/convertParams";
 
 async function getTotalCount(query: any) {
   try {
@@ -25,18 +26,7 @@ export async function GET(req: NextRequest) {
     );
 
     const allBlogs = await Blog.find(finalQuery.find)
-      .populate({
-        path: "category",
-        select: "name",
-      })
-      .populate({
-        path: "created_by",
-        select: "name",
-      })
-      .populate({
-        path: "updated_by",
-        select: "name",
-      })
+    
       .skip(finalQuery.start)
       .limit(finalQuery.limit);
 

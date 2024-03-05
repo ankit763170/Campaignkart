@@ -14,7 +14,7 @@ export const verifyToken = async (req: NextRequest) => {
 
   const token = authHeader.split(' ')[1];
   try {
-    const decoded: any = jwt.verify(token, 'campaign_Kart_654!');
+    const decoded: any = jwt.verify(token, 'veysecret');
     (req as any).userData = decoded;
     return decoded;
   } catch (error: any) {
