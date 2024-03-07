@@ -17,6 +17,7 @@ export const verifyToken = async (req: NextRequest) => {
     const decoded: any = jwt.verify(token, 'veysecret');
     (req as any).userData = decoded;
     return decoded;
+    console.log("decoded" ,decoded)
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(
@@ -50,6 +51,8 @@ export const config = {
   unstable_revalidate: 0,
   matcher: [
     '/',
+    '/all-services',
+    '/add-services',
     '/login',
     '/signup',
     '/all-blogs'

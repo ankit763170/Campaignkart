@@ -1,0 +1,30 @@
+
+import { IServices } from "@/type/index";
+import axios from "axios"
+
+
+
+
+const DeleteService = async({_id, token}:{_id:string, token : string})=> {
+ try {
+  let config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+   const response = await axios.post("/api/services/delete",{_id},config)
+   if(response.status == 200){
+   return {
+    success:true,
+    data:response.data
+   }
+   }else{
+    return {success:false, message:"data deletion failed"}
+   }
+ } catch (error:any) {
+    return {success:false, message:error.message}
+ }
+}
+
+export default DeleteService
+
+
+ 

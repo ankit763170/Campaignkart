@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/middleware";
+import { User } from "@/models";
 
 export async function GET(req: NextRequest) {
   try {
@@ -11,11 +12,8 @@ export async function GET(req: NextRequest) {
     let isValid: boolean = false;
 
     if (verificationResult) {
-      role = verificationResult.role;
-      if (role === "superadmin") {
-        isValid = true;
-        message = "Token verified successfully";
-      } else if (role === "admin") {
+const usr = await User.findById(verificationResult.id)
+    if (usr.isAdmin === "true") {
         isValid = true;
         message = "Token verified successfully";
       } else {
@@ -24,7 +22,7 @@ export async function GET(req: NextRequest) {
     }
 
     return NextResponse.json({
-      role,
+      role : "admin",
       message,
       isValid,
     });

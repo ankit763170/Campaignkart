@@ -7,7 +7,6 @@ import { IBlogs } from "@/type/index";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
 import Link from "next/link";
-import Breadcrumbs from "../../../components/Breadcrumbs/index";
 import { CircularProgress } from "@mui/material";
 
 const Blog = () => {
@@ -59,7 +58,6 @@ const Blog = () => {
         <div>
             <div className="h-[20vh] bg-brand_bggray pt-8 text-center text-3xl font-semibold">
                 <div className="text-[11px] uppercase">
-                    <Breadcrumbs />
                 </div>
                 <p className="text-3xl pt-3 font-bold">Blog</p>
             </div>

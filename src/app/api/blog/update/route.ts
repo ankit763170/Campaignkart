@@ -7,11 +7,11 @@ export async function POST(req: NextRequest) {
  
 
   try {
-  //    const verificationResult = await verifyToken(req);
-  //    if (verificationResult && !verificationResult.role) {
-  //     return verificationResult;
-  //  }
-  //   const id = verificationResult.data._id;
+      const verificationResult = await verifyToken(req);
+      if (verificationResult && !verificationResult.role) {
+       return verificationResult;
+    }
+    const id = verificationResult.data._id;
     const body = await req.json();
 // console.log(id)
     

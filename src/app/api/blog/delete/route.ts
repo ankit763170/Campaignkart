@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
 
     if (!deletedBlog) {
       throw Error("Blog not found");
+      
     }
 
     console.log("Blog deleted:", deletedBlog);

@@ -29,9 +29,9 @@ export interface IServices {
   _id?: string;
   slug: string;
   title: string;
-  shortDescription: string;
-  longDescription: string;
-  coverImage: string;
+  short_description: string;
+  long_description: string;
+  cover_image: string;
   icon: string;
   token?: string;
 }

@@ -14,7 +14,6 @@ const fetchCategory = async (props: ISLug) => {
         })
 
 
-
         if (response.status == 200) {
             return {
                 success: true,
