@@ -28,7 +28,7 @@ export const ServiceCard = ({ item, refresh }: { item: IServices, refresh: () =>
   }
   
 
-  const handleDelete = async (_id: string) => {
+  async  function handleDelete (_id: string)  {
     const response = await DeleteService({
       _id,
       token: user,
@@ -72,15 +72,14 @@ export const ServiceCard = ({ item, refresh }: { item: IServices, refresh: () =>
                 </div>
               </Link>
             </div>
-            <div className="pt-3 text-brand_secondary flex justify-end text-md">
-              <div
-                onClick={() => item._id && handleDelete(item._id)}
-                className="cursor-pointer z-50"
-              >
-                <AiFillDelete />
-              </div>
-            </div>
+          
           </div>
+          <div
+                onClick={() => {handleDelete(item._id)}}
+                className="cursor-pointer z-50" 
+              >
+                <AiFillDelete  />
+              </div>
         </div>
       </div>
     </div>

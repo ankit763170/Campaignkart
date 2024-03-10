@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CircularProgress } from "@mui/material";
 import AddBlog from "@/helpers/addBlog";
+import toast from "react-hot-toast";
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function Page() {
 
     });
     if (response.success === true) {
+      toast.success("Blog added successfully!");
       setLoading(false);
       setTitle("");
       setSlug("");
@@ -34,6 +36,7 @@ export default function Page() {
       setLongDescription("");
       setShortDescription("");
     } else {
+      toast.error(response.message);
       setLoading(false);
     }
   };

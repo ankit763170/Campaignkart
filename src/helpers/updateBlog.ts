@@ -1,6 +1,7 @@
 
 import axios from "axios"
 import { IBlogs, ICases, IUpdateBlogs } from "@/type/index"
+import toast from "react-hot-toast";
 
 
 
@@ -16,10 +17,13 @@ const UpdateBlog = async(data:IUpdateBlogs)=> {
     success:true,
     data:response.data
    }
+   toast.success("Successfully Updated Blog");
    }else{
+    toast.error("Something went wrong!");
     return {success:false, message:"data update failed"}
    }
  } catch (error:any) {
+  toast.error(`${error?.message}`)
     return {success:false, message:error.message}
  }
 }

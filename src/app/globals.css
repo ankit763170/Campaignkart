@@ -16,7 +16,9 @@
 
 button {
   border-radius: 0.375rem;
+  transition: all 0.2s ease-in, color 0.05s linear; /* Fixed transition values */
 }
+
 
 /* Apply dark mode styles */
 /* @media (prefers-color-scheme: dark) {
@@ -28,7 +30,7 @@ button {
 } */
 
 .buttonShadow {
-  box-shadow: 5px 4px 1px 1px rgba(37, 99, 235, 0.3);
+  box-shadow: 5px 4px 1px 1px rgba(5, 74, 224, 0.3);
 }
 
 body {

@@ -7,6 +7,7 @@ import DeleteBlog from "../../src/helpers/deleteBlog";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface Props {
   item: IBlogs;
@@ -31,11 +32,10 @@ const BlogCard: React.FC<Props> = ({ item, refresh }) => {
       token: user,
     });
     if (response.success === true) {
-      alert("blog deleted..");
+      toast.success("blog deleted..");
       refresh()
     } else {
-      console.error("Failed to delete blog");
-      alert("blog deleted..");
+      toast.error("Failed to delete blog");
     }
   };
 

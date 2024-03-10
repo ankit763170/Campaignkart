@@ -1,6 +1,7 @@
 import axios from "axios";
 import { login } from "@/stores/features/auth-slice";
 import { setUser } from "@/stores/features/general-reducer";
+import toast from "react-hot-toast";
 
 
 export const onLogin = async (
@@ -15,9 +16,13 @@ export const onLogin = async (
         const response = await axios.post("/api/login", user);
 
         console.log("Login success", response.data.message);
-        router.push("/");
         dispatch(login());
-        dispatch(setUser(response.data.token));
+        console.log(response.data.email, "Email");
+        dispatch(setUser(response.data));
+        toast.success("Logged in successfully!");
+
+        router.push("/");
+router.refresh()
     } catch (error) {
         console.log("Login failed", error);
     } finally {

@@ -5,6 +5,7 @@ import { onLogin } from '@/helpers/login';
 import { useRouter } from 'next/navigation'; 
 import React from 'react';
 import { useDispatch } from 'react-redux'
+import toast from 'react-hot-toast';
 
 const Page = () => {
   const [user, setUser] = useState({
@@ -19,7 +20,7 @@ const Page = () => {
   const handleLogin = async () => {
 
     setLoading(true);
-    await onLogin(user, setLoading, router, dispatch); // Added await since onLogin is asynchronous
+    await onLogin(user, setLoading, router, dispatch); 
   };
 
   const handleChange = (e:any) => {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import addServices from "@/helpers/addServices";
+import toast from "react-hot-toast";
 
 const Services = () => {
  
@@ -41,7 +42,7 @@ console.log(user);
       
     });
     if (response.success === true) {
-      alert('Service added successfully');
+      toast.success('Service added successfully');
       setLoading(false);
       setTitle("");
       setShortDescription("");
@@ -50,7 +51,7 @@ console.log(user);
       setIcon("");
       setSlug("");
     } else {
-   alert("error in Adding  Service");
+   toast.error("error in Adding Service");
       setLoading(false);
     }
   };

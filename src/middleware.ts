@@ -17,7 +17,6 @@ export const verifyToken = async (req: NextRequest) => {
     const decoded: any = jwt.verify(token, 'veysecret');
     (req as any).userData = decoded;
     return decoded;
-    console.log("decoded" ,decoded)
   } catch (error: any) {
     console.error(error);
     return NextResponse.json(
@@ -45,16 +44,16 @@ export async function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
-// Define the paths that this middleware applies to by ankit jha
+// Define the paths that this middleware applies to
 export const config = {
-  // All paths except '/login' and '/signup' will be covered by this middleware by ankit jha
-  unstable_revalidate: 0,
+  // All paths except '/login' and '/signup' will be covered by this middleware
   matcher: [
     '/',
     '/all-services',
     '/add-services',
     '/login',
     '/signup',
-    '/all-blogs'
+    '/all-blogs',
   ],
 };
+

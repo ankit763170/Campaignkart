@@ -31,7 +31,7 @@ const onSignup=()=>{
   }, [user]);
 
   return (
-    <div className="flex justify-center w-full lg:w-10/12 pt-10 px-4 lg:px-20 ">
+    <div className="flex justify-center w-full lg:w-10/12 pt-10 px-4 lg:px-30 ">
       <div className="w-full lg:w-4/12 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <h1 className="block text-gray-700 text-lg font-semibold mb-2" >{loading ? "Processing" : "Signup"}</h1>
         <hr />

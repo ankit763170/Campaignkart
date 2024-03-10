@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "../../components/Navbar";
 import Provider from "../common/Provider"
+import { CookiesProvider } from 'next-client-cookies/server';
+import toast, { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,19 +23,19 @@ export default function RootLayout({
 
 
       <body className={"3xl:px-[20%] 2xl:px-0"}>
-
         <Provider>
 
-          <Navbar />
+         <Navbar />
 
           {children}
+
         </Provider>
+        <Toaster position="top-center" toastOptions={{duration: 5000}}
+ />
+
+
 
       </body>
-
-
-
-
     </html>
   );
 }

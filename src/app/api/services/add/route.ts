@@ -15,7 +15,7 @@ try
 
     const user = await User.findById(verificationResult.id);
     if (!user || !user.isAdmin) {
-      return  NextResponse.json({ message: "Sorry, you are not able to add a service" }, { status: 403 });
+      return  NextResponse.json({ message: "Sorry, you are not permittable to add a service" }, { status: 403 });
     }
 
     const body = await req.json();

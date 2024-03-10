@@ -6,6 +6,7 @@ import { IServices } from "@/type/index";
 import fetchServices from "@/helpers/fetchServices";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const AllServices = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const AllServices = () => {
       if (error instanceof Error) {
         console.error("An unexpected error occurred:", error.message);
       
-        alert("somethin went wrong")
+      toast.error(`Failed to load services : ${error.toString()}`);
 
       }
     }
@@ -50,7 +51,7 @@ const AllServices = () => {
         </div>
         <p className="text-3xl pt-4 font-bold">Services</p>
       </div>
-      <div className="">
+      <div className="my-8">
         <img className="w-full" src="/assets/images/layer2.png" />
       </div>
       <div className="bg-white pt-10 px-10 md:px-20">

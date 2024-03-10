@@ -1,11 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
 import Image from "next/image";
 
+import { logout } from "@/stores/features/general-reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLogout } from "../src/helpers/Logout";
+
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 const Header = () => {
-  const user = useSelector((state) => state.general.user);
+  const router = useRouter();
+  const user = Cookies.get("user");
+  function logoutHandler() {
+    try {
+      handleLogout(router);
+      Cookies.remove("user");
+      toast.success("logged Out");
+    } catch (error) {
+      console.error("Logout failed:", error);
+      toast.error("Failed to Log out!");
+    }
+  }
+
   return (
     <div>
       <div className="flex border-b py-4 px-10 lg:px-20 justify-between items-center contact-details">
@@ -16,17 +34,24 @@ const Header = () => {
               src="/assets/images/logo.png"
               alt="Logo"
               width={128}
-              height={57}
+              height={157}
             />
           </div>
         </Link>
-        {user ? (
-          <Link shallow href="/logout">
-            <button className="px-3 py-2 lg:px-4 text-white lg:py-2 buttonShadow bg-brand_secondary text-[10px] lg:text-sm">
+        <div className="ml-auto display: inline-flex flex-wrap gap-3">
+          {user ? (
+            <button
+              onClick={logoutHandler}
+              className="px-13 py-2 lg:mx-12 lg:px-4 text-white lg:py-2 buttonShadow bg-primary text-[8px] lg:text-sm justify-between items-center ml-auto"
+            >
               Log out
             </button>
-          </Link>
-        ) : null}
+          ) : (
+            <button className="px-5 py-2 lg:px-4 text-white lg:py-2 buttonShadow bg-primary text-[8px] lg:text-sm justify-between items-center ml-auto">
+              <Link href="/signup">Sign Up</Link>
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
