@@ -13,7 +13,6 @@ const AddComment = async (data: Iform) => {
     const response = await axios.post(
       "/api/comments/add",
       data,
-     
     );
 
     if (response.status == 200) {

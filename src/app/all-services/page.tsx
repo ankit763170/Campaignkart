@@ -73,7 +73,7 @@ const AllServices = () => {
               <p>No Services Found</p>
             ) : (
             services &&
-            services.map((item) => <ServiceCard key={item?._id} item={item} refresh={()=>fetchAllServices()}/>)
+            services.map((item) => <ServiceCard key={item?._id} item={item}  refresh={()=>fetchAllServices()}/>)
           )}
         </div>
       </div>

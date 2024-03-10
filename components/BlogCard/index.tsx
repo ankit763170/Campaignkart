@@ -2,7 +2,7 @@ import { IBlogs } from "../../src/type/index";
 import Link from "next/link";
 import React from "react";
 import moment from "moment";
-import { AiFillDelete } from "react-icons/ai";
+import  {AiFillDelete}  from "react-icons/ai";
 import DeleteBlog from "../../src/helpers/deleteBlog";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";

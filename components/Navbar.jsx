@@ -38,7 +38,7 @@ const Header = () => {
             />
           </div>
         </Link>
-        <div className="ml-auto display: inline-flex flex-wrap gap-3">
+        <div className="ml-auto display: inline-flex flex-wrap gap-3 bg-blue">
           {user ? (
             <button
               onClick={logoutHandler}

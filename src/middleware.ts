@@ -54,6 +54,8 @@ export const config = {
     '/login',
     '/signup',
     '/all-blogs',
+    '/users',
+
   ],
 };
 

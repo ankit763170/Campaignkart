@@ -331,10 +331,10 @@ alert("updated successfully...!")
                   <div className="pt-4">
                     <button
                       onClick={() => handleSubmit()}
-                      className="px-4 rounded-md text-white py-2 bg-brand_secondary"
+                      className="px-4 rounded-md text-blue py-2 bg-primary"
                     >
                       {submitLoading ? (
-                        <div className="text-white ">
+                        <div className="text-black ">
                           <CircularProgress color="inherit" size={20} />
                         </div>
                       ) : (
@@ -391,6 +391,7 @@ alert("updated successfully...!")
                         {truncateText(item.blog?.title, 20)}
                       </p>
                     </Link>
+                    
                   </div>
                 ))}
             </div>
@@ -477,7 +478,7 @@ alert("updated successfully...!")
                     className="px-4 py-2 mt-4 bg-blue-500 text-white rounded hover:bg-blue-600"
                   >
                     {loading ? (
-                      <div className="text-white ">
+                      <div className=" text-blue">
                         <CircularProgress color="inherit" size={20} />
                       </div>
                     ) : (
